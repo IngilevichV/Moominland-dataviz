@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Data attribute test</title>
+		<style>
+			body {
+				font-family: 'Sniglet', cursive;
+			}
+			#tooltip {
+				color: white;
+				opacity: .9;
+				background: #333;
+				padding: 5px;
+				border: 1px solid lightgrey;
+				border-radius: 5px;
+				position: absolute;
+				z-index: 10;
+				visibility: hidden;
+				white-space: nowrap;
+				pointer-events: none;
+			}
+			#circle circle {
+				fill: none;
+				pointer-events: all;
+			}
+			path.group {
+				fill-opacity: 1;
+			}
+			path.chord {
+				fill-opacity: 1;
+				stroke: #000;
+				stroke-width: .25px;
+			}
+			#circle:hover path.fade {
+				display: none;
+			}
+
+		</style>
+	</head>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+	<script src="lib/underscore.js"></script>
+	<script src="tools.js"></script>
+	<script src="dataProcessing.js"></script>
+	<script src="lib/lineChart.js"></script>
+	<script src="lib/sentimentAnalysis.js"></script>
+	<script src="lib/wordsCountChart.js"></script>
+	<script src="lib/main.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Sniglet" rel="stylesheet">
+	<body>
+		<svg viewBox="0 0 980 750">
+		</svg>
+	</body>
+	
+</html>

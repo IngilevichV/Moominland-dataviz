@@ -1,0 +1,192 @@
+document.addEventListener('DOMContentLoaded', function(){
+    const bubbleChartWrapper = d3.select("svg")
+            .append("g")
+            .attr("class", "bubbleChartWrapper");
+    bubbleChartWrapper.attr("transform", "translate(450,0)")
+    var diameter = 560,
+        format = d3.format(",d"),
+        color = d3.scale.category20c();
+
+    var bubble = d3.layout.pack()
+        .sort(null)
+        .size([diameter, diameter])
+        .padding(1.5);
+    
+    var color = d3.scale.ordinal()
+      .range(["#7A99AC", "#E4002B"]);
+
+    // var svg = d3.select("body").append("svg")
+    //     .attr("width", diameter)
+    //     .attr("height", diameter)
+    //     .attr("class", "bubble");
+
+    function classes(root) {
+        var classes = [];
+        
+        function recurse(name_eng, node) {
+            if (node.count) node.count.forEach(function(child) { recurse(node.name_eng, child); });
+            else classes.push({packageName: name_eng, className: node.name_eng, value: node.value});
+        }
+        
+        recurse(null, root);
+        return {children: classes};
+        }
+    var width = 360,
+        height = 300,
+        padding = 2, // separation between same-color nodes
+        clusterPadding = 6, // separation between different-color nodes
+        maxRadius = 1;
+    //create clusters and nodes
+    function create_nodes(data,node_counter, cs, m, clusters) {
+        var i = cs.indexOf(data[node_counter].group),
+            r = (Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius)/100,
+            d = {
+              cluster: i,
+              radius: data[node_counter].value > 50 ? data[node_counter].value/20 : data[node_counter].value*1.1,
+              text: data[node_counter].name_eng,
+              x: Math.cos(i / m * 2 * Math.PI) * 200 + width / 2.5 + Math.random()/this.radius,
+              y: Math.sin(i / m * 2 * Math.PI) * 200 + height / 2 + Math.random()
+            };
+        if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
+        return d;
+      };
+
+    
+
+    d3.json("data/count_words.json", function(error, data) {
+        const dataCopy = data.count.map(d=>({...d, group: 0}));
+        //unique cluster/group id's
+        var cs = [];
+        dataCopy.forEach(function(d){
+                if(!cs.includes(d.group)) {
+                    cs.push(d.group);
+                }
+        });
+        console.info(cs);
+
+        var n = dataCopy.length, // total number of nodes
+            m = cs.length; // number of distinct clusters
+
+        //create clusters and nodes
+        var clusters = new Array(m);
+        var nodes = [];
+        for (var i = 0; i<n; i++){
+            nodes.push(create_nodes(dataCopy,i, cs, m, clusters));
+        }
+
+        console.info(nodes)
+
+        function tick(e) {
+            node.each(cluster(10 * e.alpha * e.alpha))
+                .each(collide(.3))
+            .attr("transform", function (d) {
+                var k = "translate(" + d.x + "," + d.y + ")";
+                return k;
+            })
+        }
+
+        function cluster(alpha) {
+            return function (d) {
+                var cluster = clusters[d.cluster];
+                if (cluster === d) return;
+                var x = d.x - cluster.x,
+                    y = d.y - cluster.y,
+                    l = Math.sqrt(x * x + y * y),
+                    r = d.radius + cluster.radius;
+                if (l != r) {
+                    l = (l - r) / l * alpha;
+                    d.x -= x *= l;
+                    d.y -= y *= l;
+                    cluster.x += x;
+                    cluster.y += y;
+                }
+            };
+        }
+
+        function collide(alpha) {
+            var quadtree = d3.geom.quadtree(nodes);
+            return function (d) {
+                var r = d.radius + maxRadius + Math.max(padding, clusterPadding),
+                    nx1 = d.x - r,
+                    nx2 = d.x + r,
+                    ny1 = d.y - r,
+                    ny2 = d.y + r;
+                quadtree.visit(function (quad, x1, y1, x2, y2) {
+                    if (quad.point && (quad.point !== d)) {
+                        var x = d.x - quad.point.x,
+                            y = d.y - quad.point.y,
+                            l = Math.sqrt(x * x + y * y),
+                            r = d.radius + quad.point.radius + (d.cluster === quad.point.cluster ? padding : clusterPadding);
+                        if (l < r) {
+                            l = (l - r) / l * alpha;
+                            d.x -= x *= l;
+                            d.y -= y *= l;
+                            quad.point.x += x;
+                            quad.point.y += y;
+                        }
+                    }
+                    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+                });
+            };
+        }
+        
+        
+        
+
+        var force = d3.layout.force()
+            .nodes(nodes)
+            .size([width, height])
+            .gravity(.005)
+            .charge(10)
+            .on("tick", tick)
+            .start();
+
+        // var svg = d3.select("body").append("svg")
+        //     .attr("width", width)
+        //     .attr("height", height);
+
+
+        var node = bubbleChartWrapper.selectAll("circle")
+            .data(nodes)
+            .enter().append("g").call(force.drag);
+        
+        node.append("circle")
+            .style("fill", function (d) {
+            return color(d.cluster);
+            })
+            .attr("r", function(d){return d.radius})
+            
+
+        node.append("text")
+            .attr("dy", ".1em")
+            .style("text-anchor", "middle")
+            .style("font-size", '0.5em')
+            .text(function(d) { return d.text });
+
+
+        // var node = bubbleChartWrapper.selectAll(".node")
+        // .data(bubble.nodes(classes(data))
+        // .filter(function(d) { return !d.children; }))
+        // .enter().append("g")
+        // .attr("class", "node")
+        // .attr("transform", function(d) {console.info(d); return "translate(" + d.x + "," + d.y + ")"; });
+        
+        // node.append("circle")
+        //     .attr("r", function(d) { return d.r; })
+        //     .style("fill", function(d) { return color(d.packageName); })
+        //     // .on("mouseover", function(d) {
+        //     //         tooltip.text(d.className + ": " + format(d.value));
+        //     //         tooltip.style("visibility", "visible");
+        //     // })
+        //     // .on("mousemove", function() {
+        //     //     return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+        //     // })
+        //     // .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+        //     node.append("text")
+        //         .attr("dy", ".1em")
+        //         .style("text-anchor", "middle")
+        //         .style("pointer-events", "none")
+        //         .text(function(d) { return d.className.substring(0, d.r / 3); });
+    })
+})

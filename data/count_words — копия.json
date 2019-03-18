@@ -1,0 +1,439 @@
+{
+    "count": [
+        {
+            "name": "Снифф",
+			"name_eng": "Sniff",
+            "value": 239
+        },
+		{
+            "name": "котенок",
+			"name_eng": "kitty",
+            "value": 17
+        },
+        {
+            "name": "лес",
+			"name_eng": "forest",
+            "value": 10
+        },
+        {
+            "name": "долго",
+			"name_eng": "long",
+            "value": 11
+        },
+        {
+            "name": "стоял",
+			"name_eng": "stood",
+            "value": 8
+        },
+        {
+            "name": "надо",
+			"name_eng": "need",
+            "value": 29
+        },
+        {
+            "name": "сказал",
+			"name_eng": "said",
+            "value": 338
+        },
+        {
+            "name": "достал",
+			"name_eng": "fetched",
+            "value": 11
+        },
+        {
+            "name": "Муми-тролль",
+			"name_eng": "Mumintroll",
+            "value": 286
+        },
+        {
+            "name": "несколько",
+			"name_eng": "several",
+            "value": 14
+        },
+        {
+            "name": "вокруг",
+			"name_eng": "around",
+            "value": 20
+        },
+        {
+            "name": "гордо",
+			"name_eng": "proundly",
+            "value": 9
+        },
+        {
+            "name": "совсем",
+			"name_eng": "quite",
+            "value": 24
+        },
+        {
+            "name": "взять",
+			"name_eng": "take",
+            "value": 9
+        },
+        {
+            "name": "стал",
+			"name_eng": "became",
+            "value": 24
+        },
+        {
+            "name": "чуточку",
+			"name_eng": "bit",
+            "value": 17
+        },
+        {
+            "name": "река",
+			"name_eng": "river",
+            "value": 9
+        },
+        {
+            "name": "носом",
+			"name_eng": "nose",
+            "value": 12
+        },
+        {
+            "name": "прошептал",
+			"name_eng": "whispered",
+            "value": 9
+        },
+        {
+            "name": "прямо",
+			"name_eng": "directly",
+            "value": 23
+        },
+        {
+            "name": "головой",
+			"name_eng": "head",
+            "value": 18
+        },
+        {
+            "name": "минуту",
+			"name_eng": "minute",
+            "value": 14
+        },
+        {
+            "name": "всего",
+			"name_eng": "only",
+            "value": 14
+        },
+        {
+            "name": "ужасно",
+			"name_eng": "terrible",
+            "value": 10
+        },
+        {
+            "name": "вниз",
+			"name_eng": "down",
+            "value": 8
+        },
+        {
+            "name": "вдруг",
+			"name_eng": "suddenly",
+            "value": 28
+        },
+        {
+            "name": "три",
+			"name_eng": "three",
+            "value": 9
+        },
+        {
+            "name": "спросил",
+			"name_eng": "enquire",
+            "value": 102
+        },
+        {
+            "name": "ответил",
+			"name_eng": "replied",
+            "value": 72
+        },
+        {
+            "name": "другой",
+			"name_eng": "another",
+            "value": 11
+        },
+        {
+            "name": "хочу",
+			"name_eng": "want",
+            "value": 10
+        },
+        {
+            "name": "почти",
+			"name_eng": "almost",
+            "value": 10
+        },
+        {
+            "name": "может",
+			"name_eng": "can",
+            "value": 22
+        },
+        {
+            "name": "море",
+			"name_eng": "sea",
+            "value": 8
+        },
+        {
+            "name": "медленно",
+			"name_eng": "slowly",
+            "value": 17
+        },
+        {
+            "name": "никогда",
+			"name_eng": "never",
+            "value": 14
+        },
+        {
+            "name": "весь",
+			"name_eng": "throughout",
+            "value": 15
+        },
+        {
+            "name": "мрачно",
+			"name_eng": "grimly",
+            "value": 9
+        },
+        {
+            "name": "снова",
+			"name_eng": "again",
+            "value": 14
+        },
+		{
+            "name": "право",
+			"name_eng": "right",
+            "value": 8
+        },
+        {
+            "name": "пошёл",
+			"name_eng": "gone",
+            "value": 9
+        },
+        {
+            "name": "здесь",
+			"name_eng": "here",
+            "value": 13
+        },
+        {
+            "name": "грот",
+			"name_eng": "cave",
+            "value": 22
+        },
+        {
+            "name": "время",
+			"name_eng": "time",
+            "value": 30
+        },
+        {
+            "name": "заглянул",
+			"name_eng": "peered",
+            "value": 8
+        },
+        {
+            "name": "обратно",
+			"name_eng": "conversely",
+            "value": 8
+        },
+        {
+            "name": "пять",
+			"name_eng": "five",
+            "value": 12
+        },
+        {
+            "name": "берегу",
+			"name_eng": "shore",
+            "value": 10
+        },
+        {
+            "name": "воскликнул",
+			"name_eng": "cried",
+            "value": 38
+        },
+        {
+            "name": "сквозь",
+			"name_eng": "through",
+            "value": 8
+        },
+        {
+            "name": "небо",
+			"name_eng": "sky",
+            "value": 11
+        },
+        {
+            "name": "день",
+			"name_eng": "day",
+            "value": 9
+        },
+        {
+            "name": "Муми-мама",
+			"name_eng": "Moominmamma",
+            "value": 35
+        },
+        {
+            "name": "один",
+			"name_eng": "one",
+            "value": 15
+        },
+        {
+            "name": "тихо",
+			"name_eng": "silently",
+            "value": 11
+        },
+        {
+            "name": "давно",
+			"name_eng": "long ago",
+            "value": 8
+        },
+        {
+            "name": "Муми-папа",
+			"name_eng": "Moominpappa",
+            "value": 26
+        },
+        {
+            "name": "совершенно",
+			"name_eng": "completely",
+            "value": 10
+        },
+        {
+            "name": "заметил",
+			"name_eng": "notices",
+            "value": 15
+        },
+        {
+            "name": "Выхухоль",
+			"name_eng": "muskrat",
+            "value": 33
+        },
+        {
+            "name": "воду",
+			"name_eng": "water",
+            "value": 8
+        },
+        {
+            "name": "должен",
+			"name_eng": "must",
+            "value": 40
+        },
+        {
+            "name": "лучше",
+			"name_eng": "better",
+            "value": 10
+        },
+        {
+            "name": "сидел",
+			"name_eng": "sat",
+            "value": 9
+        },
+        {
+            "name": "мама",
+			"name_eng": "mom",
+            "value": 10
+        },
+        {
+            "name": "маленький",
+			"name_eng": "little",
+            "value": 8
+        },
+        {
+            "name": "большой",
+			"name_eng": "big",
+            "value": 28
+        },
+        {
+            "name": "думаю",
+			"name_eng": "think",
+            "value": 8
+        },
+        {
+            "name": "комета",
+			"name_eng": "comet",
+            "value": 25
+        },
+        {
+            "name": "шёпотом",
+			"name_eng": "whisper",
+            "value": 8
+        },
+        {
+            "name": "крикнул",
+			"name_eng": "shouted",
+            "value": 28
+        },
+        {
+            "name": "плот",
+			"name_eng": "raft",
+            "value": 11
+        },
+        {
+            "name": "бросился",
+			"name_eng": "thrown",
+            "value": 10
+        },
+        {
+            "name": "мгновение",
+			"name_eng": "moment",
+            "value": 9
+        },
+		{
+            "name": "дорога",
+			"name_eng": "road",
+            "value": 19
+        },
+        {
+            "name": "дальше",
+			"name_eng": "further",
+            "value": 15
+        },
+        {
+            "name": "всегда",
+			"name_eng": "always",
+            "value": 10
+        },
+        {
+            "name": "сейчас",
+			"name_eng": "now",
+            "value": 10
+        },
+        {
+            "name": "Снусмумрик",
+			"name_eng": "Snufkin",
+            "value": 136
+        },
+        {
+            "name": "начал",
+			"name_eng": "started",
+            "value": 8
+        },
+        {
+            "name": "друг",
+			"name_eng": "friend",
+            "value": 16
+        },
+        {
+            "name": "Хемуль",
+			"name_eng": "Hemulen",
+            "value": 49
+        },
+        {
+            "name": "Фрёкен Снорк",
+			"name_eng": "Snorkmaiden",
+            "value": 195
+        },
+        {
+            "name": "идти",
+			"name_eng": "go",
+            "value": 8
+        },
+        {
+            "name": "Снорк",
+			"name_eng": "Snork",
+            "value": 50
+        },
+        {
+            "name": "Старушка",
+			"name_eng": "old lady",
+            "value": 9
+        },
+        {
+            "name": "зеркальце",
+			"name_eng": "mirror",
+            "value": 11
+        }
+    ]
+}
