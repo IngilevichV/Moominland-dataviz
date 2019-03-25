@@ -4,6 +4,26 @@
 //  CHORD MAPPER 
 //*******************************************************************
 
+
+const characters={
+  1: "Moomin-pappa",
+  2: "Sniff",
+  3: "Mumin-troll",
+  4: "Moomin-mamma",
+  5: "Kitty",
+  6: "Muskrat",
+  7: "Snifkin",
+  8: "Hemulen",
+  9: "Professors",
+  10: "Snork-maiden",
+  11: "Poisonous-Bush-Angostura",
+  12: "Snork",
+  13: "Saleswoman-in the store",
+  14: "Tiny",
+  15: "Skrut",
+  16: "Hemulen's-brother"
+}
+
 function chordMpr (data) {
     var mpr = {}, mmap = {}, n = 0,
         matrix = [], filter, accessor;
@@ -87,37 +107,69 @@ function chordMpr (data) {
 
     function drawChordsLegend(svg) {
       const chordsLegendWrapper = svg.append("g").attr("class", "chordsLegend");
-      chordsLegendWrapper.attr("transform","translate(-180, 30)")
+      chordsLegendWrapper.attr("transform","translate(-190, -100)")
       chordsLegendWrapper.append("svg:image")
                       .attr("xlink:href","svgArrows/turn-right-arrow-with-broken-line.svg")
                       .attr("width", "50px")
                       .attr("height", "50px")
-                      // .attr("transform","rotate(-90)")
+                      .attr("transform","rotate(0)")
                       // .attr("fill", "darkgrey");
       chordsLegendWrapper.append("text")
-                    .attr("x", -30)
-                    .attr("y", -25)
+                    .attr("x", -10)
+                    .attr("y", -15)
                     .text("Conversations")
                     .style("font-size", "10")
                     .style("font-weight", "bold")
                     .attr("fill", "darkgrey");
     
       chordsLegendWrapper.append("text")
-                    .attr("x", -30)
-                    .attr("y", -13)
+                    .attr("x", -10)
+                    .attr("y", -3)
                     .text("of the characters.")
                     .style("font-size", "10")
                     .style("font-weight", "bold")
                     .attr("fill", "darkgrey");
     }
+
+    function drawWordsLegend(svg) {
+      const wordsLegendWrapper = svg.append("g").attr("class", "wordsLegend");
+      wordsLegendWrapper.attr("transform","translate(350, 130)")
+      wordsLegendWrapper.append("svg:image")
+                      .attr("xlink:href","svgArrows/arrow4.svg")
+                      .attr("width", "80px")
+                      .attr("height", "80px")
+                      .attr("transform","translate(10,0)rotate(30)");
+      wordsLegendWrapper.append("text")
+                    .attr("x", -32)
+                    .attr("y", -7)
+                    .text("The most used words")
+                    .style("font-size", "10")
+                    .style("font-weight", "bold")
+                    .attr("fill", "darkgrey")
+                    .attr("transform","rotate(10)");
+
+      wordsLegendWrapper.append("text")
+                    .attr("x", -30)
+                    .attr("y", 7)
+                    .text("in the book.")
+                    .style("font-size", "10")
+                    .style("font-weight", "bold")
+                    .attr("fill", "darkgrey")
+                    .attr("transform","rotate(10)");
+    
+      
+    }
+
   //*******************************************************************
       //  DRAW THE CHORD DIAGRAM
       //*******************************************************************
     function drawChords (matrix, mmap) {
-        var w = 580, h = 400, r1 = h / 2, r0 = r1 - 100;
+        var w = 500, h = 370, r1 = h / 2, r0 = r1 - 100;
         var fill = d3.scale.ordinal()
             .domain(d3.range(4))
-            .range(["#FFDD89", "#957244", "#F26223", 'green', 'yellow', 'red', 'purple', 'pink', 'green', 'blue', 'lime' ,"#0000CD", "#00008B", "#000080", "FF00FF", "Olive", "LightCoral", "orange", "Chocolate", "DarkRed", "Chartreuse", "BlanchedAlmond", "PaleTurquoise", "Cyan", "Turquoise"]);
+            // .range(["#FFDD89", "#957244", "#F26223", 'green', 'yellow', 'red', 'purple', 'pink', 'green', 'blue', 'lime' ,"#0000CD", "#00008B", "#000080", "FF00FF", "Olive", "LightCoral", "orange", "Chocolate", "DarkRed", "Chartreuse", "BlanchedAlmond", "PaleTurquoise", "Cyan", "Turquoise"]);
+            .range(['#6988A6', '#C0B865', '#C0B865', '#0B8E78', '#187A6A', '#E53D00', '#3E8914', '#F2CB01', '#21A0A0', '#96E072']);
+
         var chord = d3.layout.chord()
             .padding(.02)
             .sortSubgroups(d3.descending)
@@ -131,7 +183,7 @@ function chordMpr (data) {
             .attr("height", "50%")
           .append("svg:g")
             .attr("id", "circle")
-            .attr("transform", "translate(" + (w / 2 -20) + "," + (h / 2-30) + ")");
+            .attr("transform", "translate(" + (w / 2 -20 + 80 + 100) + "," + (h / 2-30) + ")");
             svg.append("circle")
                 .attr("r", r0 + 20)
                 .attr("fill", "none");
@@ -145,9 +197,11 @@ function chordMpr (data) {
             .on("mouseover", mouseover)
             .on("mouseout", function (d) { d3.select("#tooltip").style("visibility", "hidden") });
         g.append("svg:path")
-            .style("stroke", "black")
+            .style("stroke", "#51809E")
+            .style("stroke-width", "2px")
             .style("fill", function(d) { return fill(d.index); })
             .attr("d", arc);
+
         g.append("svg:text")
             .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
             .attr("dy", ".35em")
@@ -155,11 +209,32 @@ function chordMpr (data) {
             .style("font-size", "10px")
             .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
             .attr("transform", function(d) {
+              const translateY =characters[rdr(d).gname]==="Moomin-mamma" ? 5 : 0;
               return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-                  + "translate(" + (r0 + 26) + ")"
+                  + "translate(" + (r0 + 26) + "," + translateY + ")"
                   + (d.angle > Math.PI ? "rotate(180)" : "");
             })
-            .text(function(d) { return rdr(d).gname; });
+            .text(function(d) {return characters[rdr(d).gname].split('-')[0]; })
+            .style("font-family", "Sniglet")
+            .attr("fill","#51809E");
+        
+        g.append("svg:text")
+            .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
+            .attr("dy", ".35em")
+            .style("font-family", "helvetica, arial, sans-serif")
+            .style("font-size", "10px")
+            .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+            .attr("transform", function(d) {
+              const translateY = d.angle * 180 / Math.PI - 90 > 50 ? -8 : 8;
+              const translateYAdditional = characters[rdr(d).gname]==="Moomin-mamma" ? 3 : 0;
+              return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+                  + "translate(" + (r0 + 26) + "," + (translateY+translateYAdditional) + ")"
+                  + (d.angle > Math.PI ? "rotate(180)" : "");
+            })
+            .text(function(d) {return characters[rdr(d).gname].split('-')[1]; })
+            .style("font-family", "Sniglet")
+            .attr("fill","#51809E");
+
           var chordPaths = svg.selectAll("path.chord")
                 .data(chord.chords())
               .enter().append("svg:path")
