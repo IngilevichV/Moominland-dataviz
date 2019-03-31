@@ -29,7 +29,7 @@ function chordMpr (data) {
         matrix = [], filter, accessor;
   
     mpr.setFilter = function (fun) {
-        console.info(filter, fun)
+        // console.info(filter, fun)
       filter = fun;
       return this;
     },
@@ -55,7 +55,7 @@ function chordMpr (data) {
     },
     mpr.printMatrix = function () {
       _.each(matrix, function (elem) {
-        console.log(elem);
+        // console.log(elem);
       })
     },
     mpr.addToMap = function (value, info) {
@@ -168,7 +168,7 @@ function chordMpr (data) {
         var fill = d3.scale.ordinal()
             .domain(d3.range(4))
             // .range(["#FFDD89", "#957244", "#F26223", 'green', 'yellow', 'red', 'purple', 'pink', 'green', 'blue', 'lime' ,"#0000CD", "#00008B", "#000080", "FF00FF", "Olive", "LightCoral", "orange", "Chocolate", "DarkRed", "Chartreuse", "BlanchedAlmond", "PaleTurquoise", "Cyan", "Turquoise"]);
-            .range(['#6988A6', '#C0B865', '#C0B865', '#0B8E78', '#187A6A', '#E53D00', '#3E8914', '#F2CB01', '#21A0A0', '#96E072']);
+            .range(['#6988A6', '#C0B865', '#63cafe', '#0B8E78', '#187A6A', '#E53D00', '#3E8914', '#F2CB01', '#21A0A0', '#96E072', '#ED9701', '#B1D856']);
 
         var chord = d3.layout.chord()
             .padding(.02)
@@ -179,7 +179,7 @@ function chordMpr (data) {
             .outerRadius(r0 + 20);
         var svg = d3.select("svg")
         // .attr("viewBox", `0 0 ${w} ${h}`)
-            .attr("width", "100%")
+            .attr("width", "95%")
             .attr("height", "50%")
           .append("svg:g")
             .attr("id", "circle")
@@ -216,7 +216,8 @@ function chordMpr (data) {
             })
             .text(function(d) {return characters[rdr(d).gname].split('-')[0]; })
             .style("font-family", "Sniglet")
-            .attr("fill","#51809E");
+            // .attr("fill","#51809E");
+            .attr("fill", function(d,i) {return fill(chord.groups()[i].index); });
         
         g.append("svg:text")
             .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
@@ -233,7 +234,8 @@ function chordMpr (data) {
             })
             .text(function(d) {return characters[rdr(d).gname].split('-')[1]; })
             .style("font-family", "Sniglet")
-            .attr("fill","#51809E");
+            .attr("fill", function(d,i) {return fill(chord.groups()[i].index); });
+          // console.info(chord.chords());
 
           var chordPaths = svg.selectAll("path.chord")
                 .data(chord.chords())
